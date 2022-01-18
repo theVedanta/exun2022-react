@@ -1,2 +1,2 @@
-const BASE_IMG_URL = "http://localhost:4000/img";
+const BASE_IMG_URL = "https://exun-api.herokuapp.com/img";
 export default BASE_IMG_URL;
