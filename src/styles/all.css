@@ -41,9 +41,23 @@ img {
     right: 0%;
 }
 
+.unit {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(0);
+    opacity: 0;
+    transition: all 0.8s;
+}
+#show-ques {
+    transform: translateX(-50%);
+    opacity: 1;
+}
 .answer label {
     padding-left: 1vw;
+    margin-left: 3vw;
     font-size: 1vw;
+    width: 100%;
 }
 .answer {
     display: flex;
@@ -70,12 +84,13 @@ img {
     background-color: #ccc;
 }
 .answer input:checked ~ .checkmark {
-    background-color: #2196f3;
+    background-color: #382207;
 }
 .checkmark {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 2%;
+    transform: translate(0, -50%);
     height: 25px;
     width: 25px;
     background-color: #eee;

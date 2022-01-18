@@ -2,14 +2,14 @@ import BASE_IMG_URL from "../BASE_IMG_URL";
 
 const ProductCard = ({ product, addItem, cart }) => {
     return (
-        <div className="card bg-darkChocolate shadow-lg p-7 rounded-xl mx-10">
+        <div className="card bg-darkChocolate shadow-lg p-7 rounded-xl mx-10 w-1/4">
             <img
                 src={`${BASE_IMG_URL}/${product.img}`}
                 alt="product img"
-                className="card-img w-56 h-48 rounded-xl"
+                className="card-img w-full h-56 rounded-xl"
             />
             <h1 className="text-center pt-5 text-2xl">{product.name}</h1>
-            <p className="text-justify text-sm pt-6">{product.desc}</p>
+            <p className="text-center text-3xl pt-4">${product.price}</p>
             <button
                 className="bg-lightChocolate w-full py-3 mt-5 rounded-xl"
                 onClick={() =>
