@@ -1,8 +1,11 @@
 import BASE_IMG_URL from "../BASE_IMG_URL";
 
-const ProductCard = ({ product, addItem, cart }) => {
+const ProductCard = ({ product, addItem, cart, hidden }) => {
     return (
-        <div className="card bg-darkChocolate shadow-lg p-7 rounded-xl mx-10 w-1/4">
+        <div
+            className="card bg-darkChocolate shadow-lg p-7 rounded-xl mx-10 mb-10 w-1/4"
+            style={hidden ? { display: "none" } : { display: "inline-block" }}
+        >
             <img
                 src={`${BASE_IMG_URL}/${product.img}`}
                 alt="product img"

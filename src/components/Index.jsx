@@ -1,8 +1,10 @@
 import { useState } from "react";
 import BASE_API_URL from "../BASE_API_URL";
+import ProductCard from "./ProductCard";
 
-const Index = () => {
+const Index = ({ addItem, cart }) => {
     const [ques, setQues] = useState(1);
+    const [product, setProduct] = useState({});
 
     const submitForm = async () => {
         const body = {
@@ -20,9 +22,9 @@ const Index = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),
         });
-        const recommend = recommendData.json();
+        const recommend = await recommendData.json();
 
-        console.log(recommend);
+        setProduct(recommend.product);
     };
 
     function check(e) {
@@ -38,17 +40,21 @@ const Index = () => {
             }
             inp.setAttribute("checked", "checked");
 
-            if (ques === 5) submitForm();
-            else setQues(ques + 1);
+            if (ques === 5) {
+                setQues(ques + 1);
+                submitForm();
+            } else setQues(ques + 1);
         }
     }
 
     return (
         <>
             <h1 className="text-center text-5xl py-10 pt-20">
-                What are you in the mood for today?
+                {product.name
+                    ? "Your recommended treat is..."
+                    : "What are you in the mood for today?"}
             </h1>
-            <div className="units px-24 w-full flex flex-col items-center relative">
+            <div className="units px-24 w-screen flex flex-col items-center relative">
                 <div
                     className="unit w-2/3 bg-darkChocolate rounded-xl p-10 px-12 shadow-lg mb-10"
                     id={ques === 1 ? "show-ques" : ""}
@@ -268,7 +274,7 @@ const Index = () => {
                                 value="1"
                             />
                             <span className="checkmark"></span>
-                            <label>I don't like Milk (0 boba sigma)</label>
+                            <label>I don't like Milk</label>
                         </div>
 
                         <div
@@ -300,6 +306,16 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="flex justify-center">
+                <ProductCard
+                    product={product}
+                    key={product._id}
+                    addItem={addItem}
+                    cart={cart}
+                    hidden={product.name ? false : true}
+                />
             </div>
         </>
     );

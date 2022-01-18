@@ -18,7 +18,7 @@ const Products = ({ addItem, cart }) => {
 
     return (
         <>
-            <div className="cards flex justify-center px-24 py-10">
+            <div className="cards flex justify-center px-24 py-10 flex-wrap">
                 {products.map((product) => {
                     return (
                         <ProductCard

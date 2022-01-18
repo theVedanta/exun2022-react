@@ -9,6 +9,8 @@
 }
 body {
     background: #81674a;
+    width: 100vw;
+    overflow-x: hidden;
 }
 img {
     object-fit: cover;

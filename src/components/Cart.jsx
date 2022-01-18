@@ -2,7 +2,7 @@ import { FaTimes } from "react-icons/fa";
 import BASE_IMG_URL from "../BASE_IMG_URL";
 import BASE_API_URL from "../BASE_API_URL";
 
-const Cart = ({ cart, cartActive, toggleCartActive }) => {
+const Cart = ({ cart, cartActive, toggleCartActive, removeItem }) => {
     const placeOrder = async () => {
         const orderData = await fetch(`${BASE_API_URL}/place`, {
             method: "POST",
@@ -12,12 +12,18 @@ const Cart = ({ cart, cartActive, toggleCartActive }) => {
         const ordered = await orderData.json();
 
         console.log(ordered);
+        if (ordered.done) {
+            for (let pr of cart) {
+                removeItem(pr.id);
+            }
+        }
     };
 
     return (
         <div
             className="cart-large fixed top-0 right-0 w-1/4 h-screen bg-lightChocolate shadow-xl p-10 px-6 pt-28"
             id={cartActive ? "cart-active" : "cart-inactive"}
+            style={{ zIndex: "100" }}
         >
             <FaTimes
                 className="close-side cursor-pointer absolute top-10 right-10 text-3xl"
@@ -29,7 +35,7 @@ const Cart = ({ cart, cartActive, toggleCartActive }) => {
                 cart.map((product) => {
                     return (
                         <div
-                            className="product-tab w-full rounded-xl shadow-lg bg-darkChocolate p-5 flex justify-start items-center"
+                            className="product-tab w-full rounded-xl shadow-lg bg-darkChocolate p-5 flex justify-start items-center mb-5"
                             key={product._id}
                         >
                             <img

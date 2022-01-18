@@ -58,7 +58,11 @@ const App = () => {
                     removeItem={removeItem}
                 />
                 <Routes>
-                    <Route exact path="/" element={<Index />}></Route>
+                    <Route
+                        exact
+                        path="/"
+                        element={<Index addItem={addItem} cart={cart} />}
+                    ></Route>
                     <Route
                         exact
                         path="/products"
